@@ -1,0 +1,2185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Career Brain Dump</title>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Mono:wght@400;500&family=Geist:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #F7F5F0;
+  --surface: #FFFFFF;
+  --surface2: #F0EDE6;
+  --border: #E2DDD5;
+  --border2: #CCC7BC;
+  --text: #1A1815;
+  --text2: #6B6560;
+  --text3: #9E9890;
+  --accent: #2D5A3D;
+  --accent-bg: #EBF2ED;
+  --accent2: #8B4513;
+  --accent2-bg: #F5EDE5;
+  --tag-program: #1E3A5F; --tag-program-bg: #E8EEF5;
+  --tag-platform: #2D5A3D; --tag-platform-bg: #EBF2ED;
+  --tag-ai: #5B2C6F; --tag-ai-bg: #F0EAF5;
+  --tag-feedback: #7D3C1E; --tag-feedback-bg: #F5EBEA;
+  --tag-win: #1A5276; --tag-win-bg: #EAF2F8;
+  --tag-process: #1E5631; --tag-process-bg: #E9F5EC;
+  --tag-people: #6E2F3D; --tag-people-bg: #F5EAF0;
+  --tag-other: #4A4035; --tag-other-bg: #EEEAE5;
+  --shadow: 0 1px 3px rgba(0,0,0,0.06);
+  --shadow-md: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+[data-theme="dark"] {
+  --bg: #14120E;
+  --surface: #1E1C17;
+  --surface2: #252219;
+  --border: #2E2B22;
+  --border2: #3D3930;
+  --text: #F0EDE6;
+  --text2: #9E9890;
+  --text3: #6B6560;
+  --accent: #5A9E6F;
+  --accent-bg: #1A2E1F;
+  --accent2: #C4773A;
+  --accent2-bg: #2A1F13;
+  --tag-program: #A8C4E0; --tag-program-bg: #1A2535;
+  --tag-platform: #8AC4A0; --tag-platform-bg: #1A2E20;
+  --tag-ai: #C4A8E0; --tag-ai-bg: #251A35;
+  --tag-feedback: #E0B0A0; --tag-feedback-bg: #2E1A15;
+  --tag-win: #A0C4E0; --tag-win-bg: #1A2535;
+  --tag-process: #A0D0B0; --tag-process-bg: #1A2E20;
+  --tag-people: #E0A8C0; --tag-people-bg: #2E1A25;
+  --tag-other: #C0B8A8; --tag-other-bg: #252018;
+  --shadow: 0 1px 3px rgba(0,0,0,0.2);
+  --shadow-md: 0 4px 12px rgba(0,0,0,0.3);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'Geist', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  font-size: 14px;
+  line-height: 1.6;
+  transition: background 0.2s, color 0.2s;
+}
+
+/* Layout */
+.layout { display: flex; min-height: 100vh; }
+
+.sidebar {
+  width: 300px;
+  min-width: 300px;
+  background: var(--surface);
+  border-right: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow-y: auto;
+}
+
+.main { flex: 1; min-width: 0; padding: 32px; max-width: 920px; }
+
+/* Sidebar */
+.sidebar-logo {
+  padding: 28px 24px 18px;
+  border-bottom: 1px solid var(--border);
+}
+.sidebar-logo h1 {
+  font-family: 'Instrument Serif', serif;
+  font-size: 21px;
+  font-weight: 400;
+  color: var(--text);
+  line-height: 1.2;
+}
+.sidebar-logo p {
+  font-size: 12px;
+  color: var(--text3);
+  margin-top: 4px;
+  font-family: 'DM Mono', monospace;
+}
+
+.sidebar-section { padding: 14px 14px 8px; }
+.sidebar-section-label {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text3);
+  font-weight: 500;
+  padding: 0 10px;
+  margin-bottom: 6px;
+}
+
+.sidebar-btn {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  padding: 8px 12px;
+  border-radius: 8px;
+  border: none;
+  background: transparent;
+  color: var(--text2);
+  font-family: 'Geist', sans-serif;
+  font-size: 13px;
+  cursor: pointer;
+  text-align: left;
+  transition: all 0.1s;
+}
+.sidebar-btn:hover { background: var(--surface2); color: var(--text); }
+.sidebar-btn.active { background: var(--accent-bg); color: var(--accent); font-weight: 500; }
+.sidebar-btn .count {
+  margin-left: auto;
+  font-size: 11px;
+  font-family: 'DM Mono', monospace;
+  color: var(--text3);
+  min-width: 22px;
+  text-align: right;
+}
+
+.sidebar-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  margin-top: 14px;
+}
+
+.sidebar-action-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 5px 10px;
+  border-radius: 7px;
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--text2);
+  font-family: 'Geist', sans-serif;
+  font-size: 12px;
+  cursor: pointer;
+  transition: all 0.15s;
+  white-space: nowrap;
+}
+.sidebar-action-btn:hover {
+  background: var(--surface2);
+  border-color: var(--border2);
+  color: var(--text);
+}
+
+/* Main area */
+.page-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 24px;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+.page-header h2 {
+  font-family: 'Instrument Serif', serif;
+  font-size: 26px;
+  font-weight: 400;
+  line-height: 1.2;
+}
+.page-header p { font-size: 13px; color: var(--text2); margin-top: 4px; }
+
+.header-actions { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+
+/* Search + filter bar */
+.toolbar {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+.search-wrap { position: relative; flex: 1; min-width: 200px; }
+.search-wrap input {
+  width: 100%;
+  padding: 8px 12px 8px 34px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: var(--surface);
+  color: var(--text);
+  font-family: 'Geist', sans-serif;
+  font-size: 13px;
+  outline: none;
+  transition: border-color 0.15s;
+}
+.search-wrap input:focus { border-color: var(--border2); }
+.search-wrap input::placeholder { color: var(--text3); }
+.search-icon { position: absolute; left: 10px; top: 50%; transform: translateY(-50%); color: var(--text3); font-size: 14px; pointer-events: none; }
+
+.filter-select {
+  padding: 8px 12px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: var(--surface);
+  color: var(--text);
+  font-family: 'Geist', sans-serif;
+  font-size: 13px;
+  outline: none;
+  cursor: pointer;
+}
+
+.btn-primary {
+  padding: 8px 16px;
+  border-radius: 10px;
+  border: none;
+  background: var(--accent);
+  color: #fff;
+  font-family: 'Geist', sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: opacity 0.15s;
+  white-space: nowrap;
+}
+.btn-primary:hover { opacity: 0.88; }
+
+.btn-secondary {
+  padding: 8px 14px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text2);
+  font-family: 'Geist', sans-serif;
+  font-size: 13px;
+  cursor: pointer;
+  transition: all 0.15s;
+  white-space: nowrap;
+}
+.btn-secondary:hover { background: var(--surface2); color: var(--text); border-color: var(--border2); }
+
+/* Stats row */
+.stats-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  gap: 10px;
+  margin-bottom: 24px;
+}
+.stat-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 14px 16px;
+}
+.stat-card .num {
+  font-family: 'DM Mono', monospace;
+  font-size: 24px;
+  font-weight: 500;
+  color: var(--text);
+  line-height: 1;
+}
+.stat-card .lbl {
+  font-size: 11px;
+  color: var(--text3);
+  margin-top: 4px;
+}
+
+/* Entry cards */
+.entries-list { display: flex; flex-direction: column; gap: 12px; }
+
+.entry-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 18px 20px;
+  transition: border-color 0.15s, box-shadow 0.15s;
+  position: relative;
+}
+.entry-card:hover { border-color: var(--border2); box-shadow: var(--shadow-md); }
+
+.entry-card-top {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin-bottom: 10px;
+  flex-wrap: wrap;
+}
+
+.entry-source-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 10px;
+  font-family: 'DM Mono', monospace;
+  padding: 3px 8px;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  color: var(--text3);
+  background: var(--surface2);
+  white-space: nowrap;
+}
+
+.entry-tag {
+  display: inline-flex;
+  align-items: center;
+  font-size: 11px;
+  padding: 3px 9px;
+  border-radius: 20px;
+  font-weight: 500;
+  white-space: nowrap;
+}
+.tag-programs { background: var(--tag-program-bg); color: var(--tag-program); }
+.tag-platform { background: var(--tag-platform-bg); color: var(--tag-platform); }
+.tag-ai { background: var(--tag-ai-bg); color: var(--tag-ai); }
+.tag-feedback { background: var(--tag-feedback-bg); color: var(--tag-feedback); }
+.tag-win { background: var(--tag-win-bg); color: var(--tag-win); }
+.tag-process { background: var(--tag-process-bg); color: var(--tag-process); }
+.tag-people { background: var(--tag-people-bg); color: var(--tag-people); }
+.tag-other { background: var(--tag-other-bg); color: var(--tag-other); }
+
+.entry-year-badge {
+  font-size: 11px;
+  font-family: 'DM Mono', monospace;
+  color: var(--text3);
+  margin-left: auto;
+  white-space: nowrap;
+}
+
+.entry-content {
+  font-size: 14px;
+  line-height: 1.65;
+  color: var(--text);
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.entry-has-metric {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  margin-top: 10px;
+  font-size: 11px;
+  color: var(--accent2);
+  background: var(--accent2-bg);
+  padding: 3px 9px;
+  border-radius: 20px;
+  font-weight: 500;
+}
+
+.entry-actions {
+  display: flex;
+  gap: 6px;
+  margin-top: 12px;
+  padding-top: 10px;
+  border-top: 1px solid var(--border);
+}
+.entry-act-btn {
+  font-size: 12px;
+  color: var(--text3);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 3px 6px;
+  border-radius: 6px;
+  font-family: 'Geist', sans-serif;
+  transition: all 0.12s;
+}
+.entry-act-btn:hover { background: var(--surface2); color: var(--text2); }
+.entry-act-btn.danger:hover { color: #C0392B; background: #FDECEA; }
+.entry-star { margin-left: auto; }
+.entry-act-btn.starred { color: #C4773A; }
+
+/* Empty state */
+.empty-state {
+  text-align: center;
+  padding: 60px 20px;
+  color: var(--text3);
+}
+.empty-state .empty-icon { font-size: 36px; margin-bottom: 12px; }
+.empty-state h3 { font-family: 'Instrument Serif', serif; font-weight: 400; font-size: 20px; color: var(--text2); margin-bottom: 6px; }
+.empty-state p { font-size: 13px; line-height: 1.6; max-width: 340px; margin: 0 auto 20px; }
+
+/* Modal */
+.modal-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.35);
+  z-index: 100;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+.modal-overlay.open { display: flex; }
+.modal {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  padding: 28px;
+  width: 100%;
+  max-width: 580px;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: var(--shadow-md);
+}
+.modal h3 {
+  font-family: 'Instrument Serif', serif;
+  font-size: 20px;
+  font-weight: 400;
+  margin-bottom: 20px;
+}
+.form-row { margin-bottom: 16px; }
+.form-label {
+  display: block;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--text2);
+  margin-bottom: 6px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+.form-input, .form-select, .form-textarea {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Geist', sans-serif;
+  font-size: 14px;
+  outline: none;
+  transition: border-color 0.15s;
+}
+.form-input:focus, .form-select:focus, .form-textarea:focus { border-color: var(--accent); }
+.form-input::placeholder, .form-textarea::placeholder { color: var(--text3); }
+.form-textarea { min-height: 130px; resize: vertical; line-height: 1.6; }
+.form-row-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.form-check { display: flex; align-items: center; gap: 8px; margin-top: 6px; }
+.form-check input[type=checkbox] { width: 16px; height: 16px; cursor: pointer; accent-color: var(--accent); }
+.form-check label { font-size: 13px; color: var(--text2); cursor: pointer; }
+.modal-actions { display: flex; gap: 8px; justify-content: flex-end; margin-top: 20px; }
+
+/* Source pills */
+.source-pills { display: flex; flex-wrap: wrap; gap: 6px; }
+.source-pill {
+  padding: 5px 12px;
+  border-radius: 20px;
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--text2);
+  font-size: 12px;
+  cursor: pointer;
+  font-family: 'Geist', sans-serif;
+  transition: all 0.12s;
+}
+.source-pill:hover { border-color: var(--border2); color: var(--text); }
+.source-pill.selected { background: var(--accent-bg); border-color: var(--accent); color: var(--accent); font-weight: 500; }
+
+/* Toast */
+.toast {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  background: var(--text);
+  color: var(--bg);
+  padding: 10px 18px;
+  border-radius: 10px;
+  font-size: 13px;
+  font-weight: 500;
+  z-index: 200;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: all 0.2s;
+  pointer-events: none;
+}
+.toast.show { opacity: 1; transform: translateY(0); }
+
+/* Responsive */
+@media (max-width: 640px) {
+  .sidebar { display: none; }
+  .main { padding: 20px 16px; }
+  .form-row-2 { grid-template-columns: 1fr; }
+}
+
+.section-view { display: none; }
+.section-view.active { display: block; }
+
+/* Docs */
+.doc-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 20px;
+  margin-bottom: 12px;
+  transition: border-color 0.15s;
+}
+.doc-card:hover { border-color: var(--border2); }
+.doc-card-header { display: flex; align-items: flex-start; gap: 10px; margin-bottom: 10px; flex-wrap: wrap; }
+.doc-type-badge {
+  font-size: 11px; padding: 3px 9px; border-radius: 20px; font-weight: 500;
+  background: var(--accent2-bg); color: var(--accent2); white-space: nowrap;
+}
+.doc-name { font-size: 15px; font-weight: 500; color: var(--text); flex: 1; }
+.doc-notes-lbl { font-size: 12px; color: var(--text3); font-style: italic; margin-bottom: 10px; }
+.doc-preview {
+  font-size: 13px; color: var(--text2); line-height: 1.6;
+  background: var(--surface2); border-radius: 8px; padding: 12px 14px;
+  white-space: pre-wrap; word-break: break-word;
+  max-height: 160px; overflow: hidden; position: relative;
+}
+.doc-preview.expanded { max-height: none; }
+.doc-preview-fade {
+  position: absolute; bottom: 0; left: 0; right: 0; height: 48px;
+  background: linear-gradient(transparent, var(--surface2));
+  pointer-events: none;
+}
+.doc-actions { display: flex; gap: 6px; margin-top: 12px; padding-top: 10px; border-top: 1px solid var(--border); }
+
+.sidebar-doc-item {
+  display: flex; align-items: center; gap: 8px;
+  width: 100%; padding: 6px 24px;
+  border: none; background: transparent;
+  color: var(--text3); font-family: 'Geist', sans-serif;
+  font-size: 13px; cursor: pointer; text-align: left;
+  transition: color 0.1s; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.sidebar-doc-item:hover { color: var(--text2); }
+.sidebar-doc-item.active { color: var(--accent); font-weight: 500; }
+
+/* Progress bar */
+.progress-wrap { margin-bottom: 20px; }
+.progress-label { display: flex; justify-content: space-between; font-size: 12px; color: var(--text3); margin-bottom: 6px; }
+.progress-bar { height: 4px; background: var(--surface2); border-radius: 2px; overflow: hidden; }
+.progress-fill { height: 100%; background: var(--accent); border-radius: 2px; transition: width 0.4s ease; }
+
+/* Divider label */
+.group-label {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text3);
+  font-family: 'DM Mono', monospace;
+  margin: 20px 0 8px;
+}
+.group-label:first-of-type { margin-top: 0; }
+</style>
+</head>
+<body>
+
+<div class="layout">
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <div class="sidebar-logo">
+      <h1>Career Brain Dump</h1>
+      <p class="version-lbl">your personal work archive</p>
+      <p style="font-size:11px;color:var(--text3);margin-top:6px;font-family:'DM Mono',monospace">built by Minh Tran</p>
+      <div class="sidebar-actions">
+        <button class="sidebar-action-btn" onclick="showView('howto')" title="How to use">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+          How to use
+        </button>
+        <button class="sidebar-action-btn" onclick="exportJSON()" title="Export backup">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          Export
+        </button>
+        <button class="sidebar-action-btn" onclick="openUploadModal()" title="Upload / import file">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+          Import
+        </button>
+        <button class="sidebar-action-btn" onclick="toggleTheme()" id="themeBtn" title="Toggle theme">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+          Theme
+        </button>
+      </div>
+    </div>
+
+    <div class="sidebar-section">
+      <div class="sidebar-section-label">Views</div>
+      <button class="sidebar-btn active" onclick="showView('all')">
+        <span>All entries</span>
+        <span class="count" id="count-all">0</span>
+      </button>
+      <button class="sidebar-btn" onclick="showView('starred')">
+        <span>Starred</span>
+        <span class="count" id="count-starred">0</span>
+      </button>
+      <button class="sidebar-btn" onclick="showView('metrics')">
+        <span>Has metrics</span>
+        <span class="count" id="count-metrics">0</span>
+      </button>
+    </div>
+
+    <div class="sidebar-section">
+      <div class="sidebar-section-label" style="display:flex;align-items:center;justify-content:space-between;padding-right:8px">
+        <span>By company</span>
+        <button onclick="openCompanyModal()" style="background:none;border:none;cursor:pointer;color:var(--text3);font-size:16px;line-height:1;padding:0 2px" title="Manage companies">+</button>
+      </div>
+      <button class="sidebar-btn" onclick="showView('company-all')">
+        <span>All companies</span>
+        <span class="count" id="count-company-all">0</span>
+      </button>
+      <div id="sidebar-company-list"></div>
+    </div>
+
+    <div class="sidebar-section">
+      <div class="sidebar-section-label" style="display:flex;align-items:center;justify-content:space-between;padding-right:8px">
+        <span>By category</span>
+        <button onclick="openCatModal()" style="background:none;border:none;cursor:pointer;color:var(--text3);font-size:16px;line-height:1;padding:0 2px" title="Manage categories">+</button>
+      </div>
+      <div id="sidebar-category-list"></div>
+    </div>
+
+    <div class="sidebar-section">
+      <div class="sidebar-section-label" style="display:flex;align-items:center;justify-content:space-between;padding-right:8px">
+        <span>By source</span>
+        <button onclick="openSrcModal()" style="background:none;border:none;cursor:pointer;color:var(--text3);font-size:16px;line-height:1;padding:0 2px" title="Manage sources">+</button>
+      </div>
+      <div id="sidebar-source-list"></div>
+    </div>
+
+    <div class="sidebar-section">
+      <div class="sidebar-section-label">Reference docs</div>
+      <button class="sidebar-btn" onclick="showView('docs')">
+        <span>All docs</span>
+        <span class="count" id="count-docs">0</span>
+      </button>
+    </div>
+    <div id="sidebar-doc-list"></div>
+
+  </aside>
+
+  <!-- Main -->
+  <main class="main">
+    <div class="page-header">
+      <div>
+        <h2 id="viewTitle">All entries</h2>
+        <p id="viewDesc">Everything you've captured so far</p>
+      </div>
+      <div class="header-actions">
+        <button class="btn-secondary" id="generatePromptBtn" onclick="openGenerateModal()" style="display:none">Generate resume prompt</button>
+        <button class="btn-secondary" id="pasteTextBtn" onclick="openImportModal()">Paste text</button>
+        <button class="btn-primary" id="addEntryBtn" onclick="openAddModal()">+ Add entry</button>
+        <button class="btn-primary" id="addDocBtn" onclick="openDocModal()" style="display:none">+ Add doc</button>
+      </div>
+    </div>
+
+    <div class="stats-row" id="statsRow">
+      <div class="stat-card"><div class="num" id="s-total">0</div><div class="lbl">total entries</div></div>
+      <div class="stat-card"><div class="num" id="s-starred">0</div><div class="lbl">starred</div></div>
+      <div class="stat-card"><div class="num" id="s-metrics">0</div><div class="lbl">with metrics</div></div>
+      <div class="stat-card"><div class="num" id="s-years">0</div><div class="lbl">years covered</div></div>
+    </div>
+
+    <div class="toolbar">
+      <div class="search-wrap">
+        <span class="search-icon">⌕</span>
+        <input type="text" id="searchInput" placeholder="Search entries..." oninput="renderEntries()">
+      </div>
+      <select class="filter-select" id="yearFilter" onchange="renderEntries()">
+        <option value="">All years</option>
+      </select>
+      <select class="filter-select" id="sortSelect" onchange="renderEntries()">
+        <option value="newest">Newest first</option>
+        <option value="oldest">Oldest first</option>
+        <option value="starred">Starred first</option>
+      </select>
+    </div>
+
+    <div id="entriesContainer"></div>
+  </main>
+</div>
+
+<!-- Add / Edit Modal -->
+<div class="modal-overlay" id="addModal">
+  <div class="modal">
+    <h3 id="modalTitle">New entry</h3>
+
+    <div class="form-row">
+      <label class="form-label">What happened?</label>
+      <textarea class="form-textarea" id="f-content" placeholder="Paste raw text, write a note, describe what you did — anything goes. Don't filter, just capture."></textarea>
+    </div>
+
+    <div class="form-row-2">
+      <div class="form-row" style="margin-bottom:0">
+        <label class="form-label">Year</label>
+        <select class="form-select" id="f-year">
+          <option value="2025">2025</option>
+          <option value="2024" selected>2024</option>
+          <option value="2023">2023</option>
+          <option value="2022">2022</option>
+          <option value="2021">2021</option>
+          <option value="2020">2020</option>
+          <option value="2019">2019</option>
+          <option value="earlier">earlier</option>
+        </select>
+      </div>
+      <div class="form-row" style="margin-bottom:0">
+        <label class="form-label">Company</label>
+        <select class="form-select" id="f-company">
+          <option value="">— none —</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="form-row" style="margin-top:12px">
+      <label class="form-label">Category</label>
+      <select class="form-select" id="f-category">
+        <option value="programs">Programs led</option>
+        <option value="platform">Platform / infra</option>
+        <option value="ai">AI / product</option>
+        <option value="win">Wins</option>
+        <option value="feedback">Feedback / reviews</option>
+        <option value="process">Process / ops</option>
+        <option value="people">People / leadership</option>
+        <option value="other">Other</option>
+      </select>
+    </div>
+
+    <div class="form-row" style="margin-top:16px">
+      <label class="form-label">Source — where did this come from?</label>
+      <div class="source-pills" id="sourcePills">
+        <button class="source-pill selected" data-src="memory" onclick="selectSource(this)">From memory</button>
+        <button class="source-pill" data-src="email" onclick="selectSource(this)">Email / Slack</button>
+        <button class="source-pill" data-src="review" onclick="selectSource(this)">Perf review</button>
+        <button class="source-pill" data-src="jira" onclick="selectSource(this)">Jira / tickets</button>
+        <button class="source-pill" data-src="linkedin" onclick="selectSource(this)">LinkedIn</button>
+        <button class="source-pill" data-src="doc" onclick="selectSource(this)">Docs / wiki</button>
+        <button class="source-pill" data-src="other" onclick="selectSource(this)">Other</button>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <label class="form-label">Optional notes / context</label>
+      <input class="form-input" id="f-notes" placeholder="e.g. from Sam's feedback in Nov 2023, or linked to Project Phoenix">
+    </div>
+
+    <div class="form-check">
+      <input type="checkbox" id="f-hasMetric">
+      <label for="f-hasMetric">This entry has a number or metric (e.g. 40% improvement, 3 teams, $2M)</label>
+    </div>
+    <div class="form-check">
+      <input type="checkbox" id="f-starred">
+      <label for="f-starred">Star this — strong candidate for the resume</label>
+    </div>
+
+    <div class="modal-actions">
+      <button class="btn-secondary" onclick="closeModal('addModal')">Cancel</button>
+      <button class="btn-primary" onclick="saveEntry()">Save entry</button>
+    </div>
+  </div>
+</div>
+
+<!-- Paste / import text modal -->
+<div class="modal-overlay" id="importModal">
+  <div class="modal">
+    <h3>Paste raw text</h3>
+    <p style="font-size:13px;color:var(--text2);margin-bottom:16px;line-height:1.6">Paste anything — a performance review, a Slack message, an email thread, LinkedIn post, or a block of notes. It'll be saved as-is so you can clean it up later.</p>
+    <div class="form-row">
+      <label class="form-label">Raw text</label>
+      <textarea class="form-textarea" id="f-import-text" style="min-height:160px" placeholder="Paste here..."></textarea>
+    </div>
+    <div class="form-row-2">
+      <div class="form-row" style="margin-bottom:0">
+        <label class="form-label">Year</label>
+        <select class="form-select" id="f-import-year">
+          <option value="2025">2025</option>
+          <option value="2024" selected>2024</option>
+          <option value="2023">2023</option>
+          <option value="2022">2022</option>
+          <option value="2021">2021</option>
+          <option value="2020">2020</option>
+          <option value="2019">2019</option>
+          <option value="earlier">earlier</option>
+        </select>
+      </div>
+      <div class="form-row" style="margin-bottom:0">
+        <label class="form-label">Company</label>
+        <select class="form-select" id="f-import-company">
+          <option value="">— none —</option>
+        </select>
+      </div>
+    </div>
+      <div class="form-row" style="margin-bottom:0">
+        <label class="form-label">Source</label>
+        <select class="form-select" id="f-import-source">
+          <option value="memory">From memory</option>
+          <option value="email">Email / Slack</option>
+          <option value="review">Perf review</option>
+          <option value="jira">Jira / tickets</option>
+          <option value="linkedin">LinkedIn</option>
+          <option value="doc">Docs / wiki</option>
+          <option value="other">Other</option>
+        </select>
+      </div>
+    </div>
+    <div class="form-row" style="margin-top:12px">
+      <label class="form-label">Category</label>
+      <select class="form-select" id="f-import-category">
+        <option value="other">Other (sort later)</option>
+        <option value="programs">Programs led</option>
+        <option value="platform">Platform / infra</option>
+        <option value="ai">AI / product</option>
+        <option value="win">Wins</option>
+        <option value="feedback">Feedback / reviews</option>
+        <option value="process">Process / ops</option>
+        <option value="people">People / leadership</option>
+      </select>
+    </div>
+    <div class="modal-actions">
+      <button class="btn-secondary" onclick="closeModal('importModal')">Cancel</button>
+      <button class="btn-primary" onclick="saveImport()">Save</button>
+    </div>
+  </div>
+</div>
+
+<!-- Doc modal -->
+<div class="modal-overlay" id="docModal">
+  <div class="modal">
+    <h3 id="docModalTitle">Add reference doc</h3>
+    <div class="form-row">
+      <label class="form-label">Document name</label>
+      <input class="form-input" id="f-doc-name" placeholder="e.g. Original job description — Senior PM, Acme Corp">
+    </div>
+    <div class="form-row">
+      <label class="form-label">Type</label>
+      <select class="form-select" id="f-doc-type">
+        <option value="jd">Job description (original hire)</option>
+        <option value="jd-target">Job description (target role)</option>
+        <option value="review">Performance review</option>
+        <option value="brag">Brag doc / self-assessment</option>
+        <option value="feedback">Peer feedback</option>
+        <option value="offer">Offer letter / scope doc</option>
+        <option value="other">Other reference</option>
+      </select>
+    </div>
+    <div class="form-row">
+      <label class="form-label">Paste content</label>
+      <textarea class="form-textarea" id="f-doc-content" style="min-height:200px" placeholder="Paste the full text here — JD, review, offer letter, whatever it is."></textarea>
+    </div>
+    <div class="form-row">
+      <label class="form-label">Notes (optional)</label>
+      <input class="form-input" id="f-doc-notes" placeholder="e.g. Hired Nov 2019, reported to VP Engineering">
+    </div>
+    <div class="modal-actions">
+      <button class="btn-secondary" onclick="closeModal('docModal')">Cancel</button>
+      <button class="btn-primary" onclick="saveDoc()">Save doc</button>
+    </div>
+  </div>
+</div>
+
+<!-- Company management modal -->
+<div class="modal-overlay" id="companyModal">
+  <div class="modal" style="max-width:480px">
+    <h3>Manage companies</h3>
+    <p style="font-size:13px;color:var(--text2);margin-bottom:16px;line-height:1.6">Add every company you've worked at. You can then tag entries by company and filter by employer.</p>
+
+    <div id="companyList" style="margin-bottom:16px"></div>
+
+    <div style="display:flex;gap:8px;align-items:flex-end">
+      <div style="flex:1">
+        <label class="form-label">Company name</label>
+        <input class="form-input" id="f-company-name" placeholder="e.g. Acme Corp" onkeydown="if(event.key==='Enter')addCompany()">
+      </div>
+      <div style="min-width:110px">
+        <label class="form-label">Start year</label>
+        <input class="form-input" id="f-company-start" placeholder="2019" maxlength="4" onkeydown="if(event.key==='Enter')addCompany()">
+      </div>
+      <div style="min-width:110px">
+        <label class="form-label">End year</label>
+        <input class="form-input" id="f-company-end" placeholder="2024 or current" onkeydown="if(event.key==='Enter')addCompany()">
+      </div>
+      <button class="btn-primary" onclick="addCompany()" style="white-space:nowrap;margin-bottom:0">Add</button>
+    </div>
+
+    <div class="modal-actions" style="margin-top:20px">
+      <button class="btn-primary" onclick="closeModal('companyModal')">Done</button>
+    </div>
+  </div>
+</div>
+
+<!-- How to use modal -->
+<div class="modal-overlay" id="howtoModal">
+  <div class="modal" style="max-width:600px">
+    <h3>How to use Career Brain Dump</h3>
+    <div style="font-size:13px;color:var(--text2);line-height:1.8;max-height:70vh;overflow-y:auto;padding-right:4px">
+
+      <div style="margin-bottom:18px">
+        <div style="font-weight:500;color:var(--text);margin-bottom:6px;font-size:14px">Step 1 — Add your companies</div>
+        <div>Click <strong>By company → +</strong> in the sidebar. Add every employer with a start and end year. This keeps your entries organized by role from the start.</div>
+      </div>
+
+      <div style="margin-bottom:18px">
+        <div style="font-weight:500;color:var(--text);margin-bottom:6px;font-size:14px">Step 2 — Dump everything in, don't filter</div>
+        <div>Add entries from every digital trail you can find — performance reviews, peer feedback, Slack messages where you shipped something, Jira tickets you owned, LinkedIn posts, emails where you got praised, end-of-year self-assessments. Use <strong>Upload file</strong> to drop in PDFs, Word docs, or screenshots directly. Tag each entry with the company, year, category, and source — but don't worry about writing quality. Raw notes are fine.</div>
+      </div>
+
+      <div style="margin-bottom:18px">
+        <div style="font-weight:500;color:var(--text);margin-bottom:6px;font-size:14px">Step 3 — Star your strongest entries</div>
+        <div>Once you have a pile, go through and <strong>star</strong> anything significant — a project that moved a number, something leadership noticed, a time you grew beyond your role. Starred entries become your resume candidates.</div>
+      </div>
+
+      <div style="margin-bottom:18px">
+        <div style="font-weight:500;color:var(--text);margin-bottom:6px;font-size:14px">Step 4 — Flag entries with metrics</div>
+        <div>Check <strong>has metric</strong> on any entry that contains a number, percentage, dollar amount, or team size. These are your highest-value bullets. For entries without numbers, ask yourself: can I attach one? If so, add it to the notes.</div>
+      </div>
+
+      <div style="margin-bottom:18px">
+        <div style="font-weight:500;color:var(--text);margin-bottom:6px;font-size:14px">Step 5 — Add your original job description</div>
+        <div>Go to <strong>Reference docs</strong> and add the job description you were originally hired for. This helps the AI understand your scope and the language your employer used — which often matches what future employers search for.</div>
+      </div>
+
+      <div style="margin-bottom:18px">
+        <div style="font-weight:500;color:var(--text);margin-bottom:6px;font-size:14px">Step 6 — Generate resume bullets</div>
+        <div>Navigate to a company in the sidebar and click <strong>Generate resume prompt</strong> in the top right. This bundles all your entries and reference docs for that company into a single prompt you can copy and paste into Claude, ChatGPT, or any AI tool. The AI will turn your raw notes into polished resume bullets in XYZ format (Accomplished X by doing Y, resulting in Z). It will also flag any entries where a metric is missing and suggest what you could look up.</div>
+      </div>
+
+      <div style="margin-bottom:18px">
+        <div style="font-weight:500;color:var(--text);margin-bottom:6px;font-size:14px">Step 7 — Back up your data</div>
+        <div>Click <strong>Export</strong> in the sidebar footer to download a <code>.json</code> backup. Save it to Google Drive, iCloud, or Dropbox. To restore on another device or after clearing your browser, use <strong>Upload file</strong> and drop in the backup file.</div>
+      </div>
+
+      <div style="padding:12px 14px;background:var(--surface2);border-radius:10px;font-size:12px;color:var(--text3)">
+        Your data lives entirely in your browser's local storage — nothing is sent to any server. The app works offline for all features except image OCR (which uses the Claude API to read text from screenshots).
+      </div>
+    </div>
+    <div class="modal-actions" style="margin-top:20px">
+      <button class="btn-primary" onclick="closeModal('howtoModal')">Got it</button>
+    </div>
+  </div>
+</div>
+
+<!-- Generate Resume Prompt modal -->
+<div class="modal-overlay" id="generateModal">
+  <div class="modal" style="max-width:680px">
+    <h3 id="generateModalTitle">Generate resume prompt</h3>
+    <p style="font-size:13px;color:var(--text2);margin-bottom:16px;line-height:1.6" id="generateModalDesc">Copy the prompt below and paste it into Claude, ChatGPT, Gemini, or any AI tool of your choice.</p>
+
+    <div style="margin-bottom:12px;display:flex;gap:8px;flex-wrap:wrap">
+      <label style="font-size:12px;font-weight:500;color:var(--text2);align-self:center">Include:</label>
+      <label style="display:flex;align-items:center;gap:5px;font-size:12px;color:var(--text2);cursor:pointer">
+        <input type="checkbox" id="g-all" checked onchange="refreshGeneratePrompt()"> All entries
+      </label>
+      <label style="display:flex;align-items:center;gap:5px;font-size:12px;color:var(--text2);cursor:pointer">
+        <input type="checkbox" id="g-starred-only" onchange="refreshGeneratePrompt()"> Starred only
+      </label>
+      <label style="display:flex;align-items:center;gap:5px;font-size:12px;color:var(--text2);cursor:pointer">
+        <input type="checkbox" id="g-metrics" checked onchange="refreshGeneratePrompt()"> Flag missing metrics
+      </label>
+      <label style="display:flex;align-items:center;gap:5px;font-size:12px;color:var(--text2);cursor:pointer">
+        <input type="checkbox" id="g-docs" checked onchange="refreshGeneratePrompt()"> Include reference docs
+      </label>
+    </div>
+
+    <div style="position:relative">
+      <textarea id="generateOutput" readonly style="width:100%;min-height:260px;max-height:400px;border:1px solid var(--border);border-radius:12px;padding:14px;font-family:'DM Mono',monospace;font-size:12px;line-height:1.6;background:var(--surface2);color:var(--text2);resize:vertical;outline:none"></textarea>
+      <div id="generateCount" style="position:absolute;bottom:10px;right:12px;font-size:11px;color:var(--text3);font-family:'DM Mono',monospace;pointer-events:none"></div>
+    </div>
+
+    <div class="modal-actions" style="margin-top:16px">
+      <button class="btn-secondary" onclick="closeModal('generateModal')">Close</button>
+      <button class="btn-secondary" onclick="downloadPrompt()">Download as .txt</button>
+      <button class="btn-primary" onclick="copyPrompt()">Copy prompt</button>
+    </div>
+  </div>
+</div>
+
+<!-- Category management modal -->
+<div class="modal-overlay" id="catModal">
+  <div class="modal" style="max-width:480px">
+    <h3>Manage categories</h3>
+    <p style="font-size:13px;color:var(--text2);margin-bottom:16px;line-height:1.6">Built-in categories can't be removed, but you can add your own.</p>
+    <div id="catBuiltinList" style="margin-bottom:12px"></div>
+    <div id="catCustomList" style="margin-bottom:16px"></div>
+    <div style="display:flex;gap:8px;align-items:flex-end">
+      <div style="flex:1">
+        <label class="form-label">New category</label>
+        <input class="form-input" id="f-cat-name" placeholder="e.g. Client work" onkeydown="if(event.key==='Enter')addCat()">
+      </div>
+      <button class="btn-primary" onclick="addCat()">Add</button>
+    </div>
+    <div class="modal-actions" style="margin-top:20px">
+      <button class="btn-primary" onclick="closeModal('catModal')">Done</button>
+    </div>
+  </div>
+</div>
+
+<!-- Source management modal -->
+<div class="modal-overlay" id="srcModal">
+  <div class="modal" style="max-width:480px">
+    <h3>Manage sources</h3>
+    <p style="font-size:13px;color:var(--text2);margin-bottom:16px;line-height:1.6">Built-in sources can't be removed, but you can add your own.</p>
+    <div id="srcBuiltinList" style="margin-bottom:12px"></div>
+    <div id="srcCustomList" style="margin-bottom:16px"></div>
+    <div style="display:flex;gap:8px;align-items:flex-end">
+      <div style="flex:1">
+        <label class="form-label">New source</label>
+        <input class="form-input" id="f-src-name" placeholder="e.g. Calendar / meetings" onkeydown="if(event.key==='Enter')addSrc()">
+      </div>
+      <button class="btn-primary" onclick="addSrc()">Add</button>
+    </div>
+    <div class="modal-actions" style="margin-top:20px">
+      <button class="btn-primary" onclick="closeModal('srcModal')">Done</button>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+<input type="file" id="fileImportJSON" accept=".json" style="display:none" onchange="loadJSON(event)">
+<input type="file" id="fileUploadInput" accept=".txt,.pdf,.docx,.doc,.png,.jpg,.jpeg,.gif,.webp" multiple style="display:none" onchange="handleFileUpload(event)">
+
+<!-- Upload Files Modal -->
+<div class="modal-overlay" id="uploadModal">
+  <div class="modal" style="max-width:620px">
+    <h3>Upload files</h3>
+    <p style="font-size:13px;color:var(--text2);margin-bottom:16px;line-height:1.6">Supports <strong>.txt</strong>, <strong>.docx</strong>, <strong>.pdf</strong>, <strong>.json</strong> (backup), and images (<strong>.png / .jpg</strong> — text will be extracted). Each file becomes a new entry or reference doc.</p>
+
+    <div id="dropZone" style="border:2px dashed var(--border2);border-radius:14px;padding:32px 20px;text-align:center;cursor:pointer;transition:all 0.15s;margin-bottom:16px" onclick="document.getElementById('fileUploadInput').click()" ondragover="onDragOver(event)" ondragleave="onDragLeave(event)" ondrop="onDrop(event)">
+      <div style="font-size:28px;margin-bottom:8px;color:var(--text3)">⬆</div>
+      <div style="font-size:14px;font-weight:500;color:var(--text2);margin-bottom:4px">Drop files here or click to browse</div>
+      <div style="font-size:12px;color:var(--text3)">.txt · .docx · .pdf · .png · .jpg · .json</div>
+    </div>
+
+    <div id="uploadFileList" style="display:none;margin-bottom:16px"></div>
+
+    <div id="uploadOptions" style="display:none">
+      <div class="form-row-2">
+        <div class="form-row" style="margin-bottom:0">
+          <label class="form-label">Save as</label>
+          <select class="form-select" id="u-save-as">
+            <option value="entry">Entry (brain dump)</option>
+            <option value="doc">Reference doc</option>
+          </select>
+        </div>
+        <div class="form-row" style="margin-bottom:0">
+          <label class="form-label">Year</label>
+          <select class="form-select" id="u-year">
+            <option value="2025">2025</option>
+            <option value="2024" selected>2024</option>
+            <option value="2023">2023</option>
+            <option value="2022">2022</option>
+            <option value="2021">2021</option>
+            <option value="2020">2020</option>
+            <option value="2019">2019</option>
+            <option value="earlier">earlier</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-row-2" style="margin-top:12px">
+        <div class="form-row" style="margin-bottom:0">
+          <label class="form-label">Category / type</label>
+          <select class="form-select" id="u-category">
+            <option value="other">Other (sort later)</option>
+            <option value="feedback">Feedback / reviews</option>
+            <option value="programs">Programs led</option>
+            <option value="platform">Platform / infra</option>
+            <option value="ai">AI / product</option>
+            <option value="win">Wins</option>
+            <option value="process">Process / ops</option>
+            <option value="people">People / leadership</option>
+          </select>
+        </div>
+        <div class="form-row" style="margin-bottom:0">
+          <label class="form-label">Company</label>
+          <select class="form-select" id="u-company">
+            <option value="">— none —</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-row-2" style="margin-top:12px">
+        <div class="form-row" style="margin-bottom:0">
+          <label class="form-label">Source</label>
+          <select class="form-select" id="u-source">
+            <option value="doc">Docs / wiki</option>
+            <option value="review">Perf review</option>
+            <option value="email">Email / Slack</option>
+            <option value="jira">Jira / tickets</option>
+            <option value="linkedin">LinkedIn</option>
+            <option value="memory">From memory</option>
+            <option value="other">Other</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <div id="uploadProgress" style="display:none;margin-top:16px">
+      <div style="font-size:13px;color:var(--text2);margin-bottom:8px" id="uploadProgressLabel">Processing…</div>
+      <div style="height:4px;background:var(--surface2);border-radius:2px;overflow:hidden">
+        <div id="uploadProgressBar" style="height:100%;background:var(--accent);border-radius:2px;width:0%;transition:width 0.3s"></div>
+      </div>
+    </div>
+
+    <div class="modal-actions" style="margin-top:20px">
+      <button class="btn-secondary" onclick="closeModal('uploadModal')">Cancel</button>
+      <button class="btn-primary" id="uploadSaveBtn" onclick="processUploads()" style="display:none">Save all files</button>
+    </div>
+  </div>
+</div>
+
+<script>
+const DEFAULT_CATS = [
+  {id:'programs', label:'Programs led'},
+  {id:'platform', label:'Platform / infra'},
+  {id:'ai',       label:'AI / product'},
+  {id:'win',      label:'Wins'},
+  {id:'feedback', label:'Feedback / reviews'},
+  {id:'process',  label:'Process / ops'},
+  {id:'people',   label:'People / leadership'},
+  {id:'other',    label:'Other'},
+];
+const DEFAULT_SRCS = [
+  {id:'memory',   label:'From memory'},
+  {id:'email',    label:'Email / Slack'},
+  {id:'review',   label:'Perf review'},
+  {id:'jira',     label:'Jira / tickets'},
+  {id:'linkedin', label:'LinkedIn'},
+  {id:'doc',      label:'Docs / wiki'},
+  {id:'other',    label:'Other source'},
+];
+
+let customCats = [];
+let customSrcs = [];
+
+function getCats() { return [...DEFAULT_CATS, ...customCats]; }
+function getSrcs() { return [...DEFAULT_SRCS, ...customSrcs]; }
+function getCatLabel(id) { return getCats().find(c=>c.id===id)?.label || id; }
+function getSrcLabel(id) { return getSrcs().find(s=>s.id===id)?.label || id; }
+
+const DOC_TYPES = {
+  jd:'Job description (hired)', 'jd-target':'JD (target role)', review:'Perf review',
+  brag:'Brag doc', feedback:'Peer feedback', offer:'Offer / scope', other:'Reference'
+};
+
+let entries = [];
+let docs = [];
+let companies = [];
+let currentView = 'all';
+let editingId = null;
+let editingDocId = null;
+let selectedSource = 'memory';
+let isDark = false;
+let expandedDocs = new Set();
+
+function load() {
+  try { const d = localStorage.getItem('careerDump_v2'); if (d) entries = JSON.parse(d); } catch(e) { entries = []; }
+  try { const d = localStorage.getItem('careerDump_docs'); if (d) docs = JSON.parse(d); } catch(e) { docs = []; }
+  try { const d = localStorage.getItem('careerDump_companies'); if (d) companies = JSON.parse(d); } catch(e) { companies = []; }
+  try { const d = localStorage.getItem('careerDump_cats'); if (d) customCats = JSON.parse(d); } catch(e) { customCats = []; }
+  try { const d = localStorage.getItem('careerDump_srcs'); if (d) customSrcs = JSON.parse(d); } catch(e) { customSrcs = []; }
+  const theme = localStorage.getItem('careerDump_theme');
+  if (theme === 'dark') { isDark = true; document.documentElement.setAttribute('data-theme','dark'); }
+}
+
+function save() {
+  localStorage.setItem('careerDump_v2', JSON.stringify(entries));
+  localStorage.setItem('careerDump_docs', JSON.stringify(docs));
+  localStorage.setItem('careerDump_companies', JSON.stringify(companies));
+  localStorage.setItem('careerDump_cats', JSON.stringify(customCats));
+  localStorage.setItem('careerDump_srcs', JSON.stringify(customSrcs));
+  updateCounts();
+  updateStats();
+  populateYearFilter();
+  renderSidebarDocs();
+  renderSidebarCompanies();
+  renderSidebarCats();
+  renderSidebarSrcs();
+  populateCompanySelects();
+  populateCatSelects();
+  populateSrcSelects();
+}
+
+function uid() { return Date.now().toString(36) + Math.random().toString(36).slice(2); }
+
+function showView(view, docId) {
+  currentView = view;
+  const isDocsView = view === 'docs' || view === 'doc-single';
+  const isHowto = view === 'howto';
+  const isCompanyView = view.startsWith('co-') || view === 'company-all';
+
+  // show how to use modal directly
+  if (isHowto) {
+    document.getElementById('howtoModal').classList.add('open');
+    return;
+  }
+
+  document.getElementById('addEntryBtn').style.display = isDocsView ? 'none' : '';
+  document.getElementById('pasteTextBtn').style.display = isDocsView ? 'none' : '';
+  document.getElementById('addDocBtn').style.display = isDocsView ? '' : 'none';
+  document.getElementById('generatePromptBtn').style.display = (!isDocsView && !isHowto) ? '' : 'none';
+
+  const statsRow = document.getElementById('statsRow');
+  statsRow.style.display = isDocsView ? 'none' : '';
+  document.querySelector('.toolbar').style.display = isDocsView ? 'none' : '';
+
+  // update generate button label
+  const genBtn = document.getElementById('generatePromptBtn');
+  if (view.startsWith('co-')) {
+    const co = companies.find(c=>c.id===view.replace('co-',''));
+    genBtn.textContent = co ? `Generate prompt — ${co.name}` : 'Generate resume prompt';
+  } else {
+    genBtn.textContent = 'Generate resume prompt';
+  }
+
+  document.querySelectorAll('.sidebar-btn').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('.sidebar-doc-item').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('.sidebar-company-item').forEach(b => b.classList.remove('active'));
+
+  const map = {
+    'all':'All entries','starred':'Starred','metrics':'Has metrics',
+    'cat-programs':'Programs led','cat-platform':'Platform / infra','cat-ai':'AI / product',
+    'cat-win':'Wins','cat-feedback':'Feedback / reviews','cat-process':'Process / ops',
+    'cat-people':'People / leadership','cat-other':'Other',
+    'src-email':'Email / Slack','src-review':'Perf reviews','src-jira':'Jira / tickets',
+    'src-linkedin':'LinkedIn','src-memory':'From memory','src-doc':'Docs / wiki','src-other':'Other source',
+    'docs':'Reference docs','doc-single':'','company-all':'All companies'
+  };
+  const desc = {
+    'all':'Everything you\'ve captured so far','starred':'Your strongest resume candidates',
+    'metrics':'Entries with numbers — turn these into bullets first',
+    'docs':'Job descriptions, reviews, offer letters, and other reference material',
+    'doc-single':'','company-all':'Entries tagged across all companies'
+  };
+
+  if (view.startsWith('cat-')) {
+    const cid = view.replace('cat-','');
+    const cat = getCats().find(c=>c.id===cid);
+    document.getElementById('viewTitle').textContent = cat ? cat.label : cid;
+    document.getElementById('viewDesc').textContent = 'All entries in this category';
+    document.querySelectorAll('.sidebar-btn').forEach(btn => {
+      if (btn.getAttribute('onclick') === `showView('${view}')`) btn.classList.add('active');
+    });
+    renderEntries(); return;
+  }
+
+  if (view.startsWith('src-')) {
+    const sid = view.replace('src-','');
+    const src = getSrcs().find(s=>s.id===sid);
+    document.getElementById('viewTitle').textContent = src ? src.label : sid;
+    document.getElementById('viewDesc').textContent = 'All entries from this source';
+    document.querySelectorAll('.sidebar-btn').forEach(btn => {
+      if (btn.getAttribute('onclick') === `showView('${view}')`) btn.classList.add('active');
+    });
+    renderEntries(); return;
+  }
+
+  if (view.startsWith('co-')) {
+    const cid = view.replace('co-','');
+    const co = companies.find(c=>c.id===cid);
+    document.getElementById('viewTitle').textContent = co ? co.name : 'Company';
+    const tenure = co ? co.start + (co.end ? ' – ' + co.end : ' – present') : '';
+    document.getElementById('viewDesc').textContent = tenure;
+    const btn = document.getElementById('cbtn-'+cid);
+    if (btn) btn.classList.add('active');
+    renderEntries(); return;
+  }
+
+  if (view === 'doc-single' && docId) {
+    const d = docs.find(x=>x.id===docId);
+    document.getElementById('viewTitle').textContent = d ? d.name : 'Document';
+    document.getElementById('viewDesc').textContent = d ? (DOC_TYPES[d.type]||'') + (d.notes?' · '+d.notes:'') : '';
+    const btn = document.getElementById('doc-'+docId);
+    if (btn) btn.classList.add('active');
+    renderSingleDoc(docId); return;
+  }
+
+  document.getElementById('viewTitle').textContent = map[view] || view;
+  document.getElementById('viewDesc').textContent = desc[view] || '';
+  document.querySelectorAll('.sidebar-btn').forEach(btn => {
+    if (btn.getAttribute('onclick') === `showView('${view}')`) btn.classList.add('active');
+  });
+  if (isDocsView) { renderDocsView(); } else { renderEntries(); }
+}
+
+function getFiltered() {
+  let list = [...entries];
+  const v = currentView;
+  if (v === 'starred') list = list.filter(e => e.starred);
+  else if (v === 'metrics') list = list.filter(e => e.hasMetric);
+  else if (v.startsWith('cat-')) list = list.filter(e => e.category === v.replace('cat-',''));
+  else if (v.startsWith('src-')) list = list.filter(e => e.source === v.replace('src-',''));
+  else if (v.startsWith('co-')) list = list.filter(e => e.company === v.replace('co-',''));
+
+  const q = document.getElementById('searchInput')?.value?.toLowerCase() || '';
+  if (q) list = list.filter(e => (e.content||'').toLowerCase().includes(q) || (e.notes||'').toLowerCase().includes(q));
+
+  const yr = document.getElementById('yearFilter')?.value || '';
+  if (yr) list = list.filter(e => e.year === yr);
+
+  const sort = document.getElementById('sortSelect')?.value || 'newest';
+  if (sort === 'newest') list.sort((a,b) => b.created - a.created);
+  else if (sort === 'oldest') list.sort((a,b) => a.created - b.created);
+  else if (sort === 'starred') list.sort((a,b) => (b.starred?1:0)-(a.starred?1:0) || b.created-a.created);
+  return list;
+}
+
+function getCompanyName(cid) {
+  if (!cid) return null;
+  const co = companies.find(c=>c.id===cid);
+  return co ? co.name : null;
+}
+
+function renderEntries() {
+  const list = getFiltered();
+  const container = document.getElementById('entriesContainer');
+
+  if (!list.length) {
+    container.innerHTML = `<div class="empty-state">
+      <div class="empty-icon">◇</div>
+      <h3>${entries.length === 0 ? 'Start your brain dump' : 'No entries match'}</h3>
+      <p>${entries.length === 0 ? 'Add your first entry — paste a performance review, type a memory, or drop in a Slack message. Nothing is too rough.' : 'Try adjusting your search or filter.'}</p>
+      ${entries.length === 0 ? '<button class="btn-primary" onclick="openAddModal()">+ Add first entry</button>' : ''}
+    </div>`;
+    return;
+  }
+
+  let html = '<div class="entries-list">';
+  let lastYear = null;
+  list.forEach(entry => {
+    if (entry.year !== lastYear) {
+      html += `<div class="group-label">${entry.year}</div>`;
+      lastYear = entry.year;
+    }
+    const catClass = 'tag-' + (entry.category || 'other');
+    const catLabel = getCatLabel(entry.category) || 'Other';
+    const srcLabel = getSrcLabel(entry.source) || 'Other';
+    const coName = getCompanyName(entry.company);
+    const content = entry.content ? entry.content.substring(0, 400) + (entry.content.length > 400 ? '…' : '') : '';
+    html += `<div class="entry-card" id="ec-${entry.id}">
+      <div class="entry-card-top">
+        <span class="entry-source-badge">${srcLabel}</span>
+        <span class="entry-tag ${catClass}">${catLabel}</span>
+        ${coName ? `<span class="entry-source-badge" style="background:var(--accent-bg);color:var(--accent);border-color:var(--accent)">${escHtml(coName)}</span>` : ''}
+        <span class="entry-year-badge">${entry.year}</span>
+      </div>
+      <div class="entry-content">${escHtml(content)}</div>
+      ${entry.hasMetric ? '<div class="entry-has-metric">◆ has metric</div>' : ''}
+      ${entry.notes ? `<div style="font-size:12px;color:var(--text3);margin-top:8px;font-style:italic">${escHtml(entry.notes)}</div>` : ''}
+      <div class="entry-actions">
+        <button class="entry-act-btn" onclick="editEntry('${entry.id}')">Edit</button>
+        <button class="entry-act-btn danger" onclick="deleteEntry('${entry.id}')">Remove</button>
+        <button class="entry-act-btn entry-star ${entry.starred?'starred':''}" onclick="toggleStar('${entry.id}')">${entry.starred ? '★ Starred' : '☆ Star'}</button>
+      </div>
+    </div>`;
+  });
+  html += '</div>';
+  container.innerHTML = html;
+}
+
+function escHtml(s) {
+  return (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+function renderSidebarDocs() {
+  const container = document.getElementById('sidebar-doc-list');
+  if (!docs.length) { container.innerHTML = ''; return; }
+  container.innerHTML = docs.map(d =>
+    `<button class="sidebar-doc-item" id="doc-${d.id}" onclick="showView('doc-single','${d.id}')">
+      ↳ ${escHtml(d.name.substring(0,28))}${d.name.length>28?'…':''}
+    </button>`
+  ).join('');
+}
+
+function renderDocsView() {
+  const container = document.getElementById('entriesContainer');
+  if (!docs.length) {
+    container.innerHTML = `<div class="empty-state">
+      <div class="empty-icon">◻</div>
+      <h3>No reference docs yet</h3>
+      <p>Add your original job description, offer letter, performance reviews, or any document you want to keep alongside your entries.</p>
+      <button class="btn-primary" onclick="openDocModal()">+ Add first doc</button>
+    </div>`;
+    return;
+  }
+  container.innerHTML = docs.map(d => renderDocCard(d, false)).join('');
+}
+
+function renderSingleDoc(docId) {
+  const d = docs.find(x=>x.id===docId);
+  const container = document.getElementById('entriesContainer');
+  if (!d) { container.innerHTML = '<p>Not found</p>'; return; }
+  container.innerHTML = renderDocCard(d, true);
+}
+
+function renderDocCard(d, expanded) {
+  const isExp = expanded || expandedDocs.has(d.id);
+  return `<div class="doc-card">
+    <div class="doc-card-header">
+      <div>
+        <div class="doc-name">${escHtml(d.name)}</div>
+        ${d.notes ? `<div class="doc-notes-lbl">${escHtml(d.notes)}</div>` : ''}
+      </div>
+      <span class="doc-type-badge">${DOC_TYPES[d.type]||'Reference'}</span>
+    </div>
+    <div class="doc-preview ${isExp?'expanded':''}" id="dp-${d.id}">
+      ${escHtml(d.content)}
+      ${!isExp ? '<div class="doc-preview-fade"></div>' : ''}
+    </div>
+    <div class="doc-actions">
+      <button class="entry-act-btn" onclick="toggleDocExpand('${d.id}')">${isExp?'Collapse':'Read full'}</button>
+      <button class="entry-act-btn" onclick="editDoc('${d.id}')">Edit</button>
+      <button class="entry-act-btn danger" onclick="deleteDoc('${d.id}')">Remove</button>
+    </div>
+  </div>`;
+}
+
+function toggleDocExpand(id) {
+  if (expandedDocs.has(id)) expandedDocs.delete(id); else expandedDocs.add(id);
+  if (currentView === 'docs') renderDocsView();
+  else renderSingleDoc(id);
+}
+
+function openDocModal(id) {
+  editingDocId = id || null;
+  const doc = id ? docs.find(d=>d.id===id) : null;
+  document.getElementById('docModalTitle').textContent = doc ? 'Edit doc' : 'Add reference doc';
+  document.getElementById('f-doc-name').value = doc ? doc.name : '';
+  document.getElementById('f-doc-type').value = doc ? doc.type : 'jd';
+  document.getElementById('f-doc-content').value = doc ? doc.content : '';
+  document.getElementById('f-doc-notes').value = doc ? (doc.notes||'') : '';
+  document.getElementById('docModal').classList.add('open');
+  setTimeout(()=>document.getElementById('f-doc-name').focus(), 100);
+}
+
+function saveDoc() {
+  const name = document.getElementById('f-doc-name').value.trim();
+  const content = document.getElementById('f-doc-content').value.trim();
+  if (!name || !content) { showToast('Please add a name and content'); return; }
+  if (editingDocId) {
+    const idx = docs.findIndex(d=>d.id===editingDocId);
+    if (idx>-1) docs[idx] = { ...docs[idx], name, type: document.getElementById('f-doc-type').value, content, notes: document.getElementById('f-doc-notes').value.trim(), updated: Date.now() };
+    showToast('Doc updated');
+  } else {
+    docs.unshift({ id: uid(), name, type: document.getElementById('f-doc-type').value, content, notes: document.getElementById('f-doc-notes').value.trim(), created: Date.now() });
+    showToast('Doc saved');
+  }
+  save();
+  closeModal('docModal');
+  showView('docs');
+}
+
+function editDoc(id) { openDocModal(id); }
+
+function deleteDoc(id) {
+  if (!confirm('Remove this document?')) return;
+  docs = docs.filter(d=>d.id!==id);
+  save();
+  showView('docs');
+  showToast('Doc removed');
+}
+
+function updateCounts() {
+  const set = {
+    'all': entries.length,
+    'starred': entries.filter(e=>e.starred).length,
+    'metrics': entries.filter(e=>e.hasMetric).length,
+    'docs': docs.length,
+    'company-all': entries.filter(e=>e.company).length,
+  };
+  getCats().forEach(c => { set['cat-'+c.id] = entries.filter(e=>e.category===c.id).length; });
+  getSrcs().forEach(s => { set['src-'+s.id] = entries.filter(e=>e.source===s.id).length; });
+  companies.forEach(co => { set['co-'+co.id] = entries.filter(e=>e.company===co.id).length; });
+  Object.keys(set).forEach(k => {
+    const el = document.getElementById('count-'+k);
+    if (el) el.textContent = set[k] || '';
+  });
+}
+
+function updateStats() {
+  document.getElementById('s-total').textContent = entries.length;
+  document.getElementById('s-starred').textContent = entries.filter(e=>e.starred).length;
+  document.getElementById('s-metrics').textContent = entries.filter(e=>e.hasMetric).length;
+  const years = new Set(entries.map(e=>e.year).filter(Boolean));
+  document.getElementById('s-years').textContent = years.size;
+}
+
+function populateYearFilter() {
+  const sel = document.getElementById('yearFilter');
+  const cur = sel.value;
+  const years = [...new Set(entries.map(e=>e.year).filter(Boolean))].sort().reverse();
+  sel.innerHTML = '<option value="">All years</option>' + years.map(y=>`<option value="${y}">${y}</option>`).join('');
+  if (cur) sel.value = cur;
+}
+
+function selectSource(el) {
+  document.querySelectorAll('.source-pill').forEach(p=>p.classList.remove('selected'));
+  el.classList.add('selected');
+  selectedSource = el.dataset.src;
+}
+
+function renderSidebarCompanies() {
+  const container = document.getElementById('sidebar-company-list');
+  if (!companies.length) { container.innerHTML = ''; return; }
+  container.innerHTML = companies.map(co => {
+    const count = entries.filter(e=>e.company===co.id).length;
+    return `<button class="sidebar-btn sidebar-company-item" id="cbtn-${co.id}" onclick="showView('co-${co.id}')">
+      <span style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${escHtml(co.name)}</span>
+      <span class="count" id="count-co-${co.id}">${count||''}</span>
+    </button>`;
+  }).join('');
+}
+
+function renderSidebarCats() {
+  const container = document.getElementById('sidebar-category-list');
+  container.innerHTML = getCats().map(c => {
+    const count = entries.filter(e=>e.category===c.id).length;
+    const isCustom = customCats.find(x=>x.id===c.id);
+    return `<button class="sidebar-btn sidebar-cat-item" id="catbtn-${c.id}" onclick="showView('cat-${c.id}')">
+      <span style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${escHtml(c.label)}</span>
+      <span class="count" id="count-cat-${c.id}">${count||''}</span>
+    </button>`;
+  }).join('');
+}
+
+function renderSidebarSrcs() {
+  const container = document.getElementById('sidebar-source-list');
+  container.innerHTML = getSrcs().map(s => {
+    const count = entries.filter(e=>e.source===s.id).length;
+    return `<button class="sidebar-btn sidebar-src-item" id="srcbtn-${s.id}" onclick="showView('src-${s.id}')">
+      <span style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${escHtml(s.label)}</span>
+      <span class="count" id="count-src-${s.id}">${count||''}</span>
+    </button>`;
+  }).join('');
+}
+
+function populateCatSelects() {
+  const opts = getCats().map(c=>`<option value="${c.id}">${escHtml(c.label)}</option>`).join('');
+  ['f-category','f-import-category','u-category'].forEach(id => {
+    const el = document.getElementById(id);
+    if (!el) return;
+    const cur = el.value;
+    el.innerHTML = opts;
+    if (cur && el.querySelector(`option[value="${cur}"]`)) el.value = cur;
+  });
+}
+
+function populateSrcSelects() {
+  const opts = getSrcs().map(s=>`<option value="${s.id}">${escHtml(s.label)}</option>`).join('');
+  ['f-import-source','u-source'].forEach(id => {
+    const el = document.getElementById(id);
+    if (!el) return;
+    const cur = el.value;
+    el.innerHTML = opts;
+    if (cur && el.querySelector(`option[value="${cur}"]`)) el.value = cur;
+  });
+  const pillsContainer = document.getElementById('sourcePills');
+  if (pillsContainer) {
+    pillsContainer.innerHTML = getSrcs().map(s =>
+      `<button class="source-pill${selectedSource===s.id?' selected':''}" data-src="${s.id}" onclick="selectSource(this)">${escHtml(s.label)}</button>`
+    ).join('');
+  }
+}
+
+function openCatModal() {
+  document.getElementById('f-cat-name').value = '';
+  renderCatModalList();
+  document.getElementById('catModal').classList.add('open');
+  setTimeout(()=>document.getElementById('f-cat-name').focus(), 100);
+}
+
+function renderCatModalList() {
+  const rowStyle = 'display:flex;align-items:center;gap:10px;padding:7px 12px;background:var(--surface2);border-radius:10px;margin-bottom:5px;font-size:13px';
+  document.getElementById('catBuiltinList').innerHTML =
+    '<div style="font-size:11px;text-transform:uppercase;letter-spacing:0.08em;color:var(--text3);margin-bottom:6px">Built-in</div>' +
+    DEFAULT_CATS.map(c=>`<div style="${rowStyle}"><span style="flex:1;color:var(--text2)">${escHtml(c.label)}</span><span style="font-size:11px;color:var(--text3)">default</span></div>`).join('');
+  const custom = customCats;
+  document.getElementById('catCustomList').innerHTML = !custom.length ? '' :
+    '<div style="font-size:11px;text-transform:uppercase;letter-spacing:0.08em;color:var(--text3);margin:10px 0 6px">Custom</div>' +
+    custom.map(c=>`<div style="${rowStyle}">
+      <span style="flex:1;color:var(--text)">${escHtml(c.label)}</span>
+      <button onclick="removeCat('${c.id}')" style="background:none;border:none;cursor:pointer;color:var(--text3);font-size:13px;padding:2px 8px;border-radius:6px" onmouseover="this.style.color='#C0392B'" onmouseout="this.style.color='var(--text3)'">Remove</button>
+    </div>`).join('');
+}
+
+function addCat() {
+  const name = document.getElementById('f-cat-name').value.trim();
+  if (!name) return;
+  const id = 'c_' + name.toLowerCase().replace(/[^a-z0-9]/g,'_').slice(0,20) + '_' + Date.now().toString(36);
+  if (getCats().find(c=>c.label.toLowerCase()===name.toLowerCase())) { showToast('Already exists'); return; }
+  customCats.push({ id, label: name });
+  document.getElementById('f-cat-name').value = '';
+  save();
+  renderCatModalList();
+  showToast('Category added');
+}
+
+function removeCat(id) {
+  customCats = customCats.filter(c=>c.id!==id);
+  save();
+  renderCatModalList();
+  showToast('Removed');
+}
+
+function openSrcModal() {
+  document.getElementById('f-src-name').value = '';
+  renderSrcModalList();
+  document.getElementById('srcModal').classList.add('open');
+  setTimeout(()=>document.getElementById('f-src-name').focus(), 100);
+}
+
+function renderSrcModalList() {
+  const rowStyle = 'display:flex;align-items:center;gap:10px;padding:7px 12px;background:var(--surface2);border-radius:10px;margin-bottom:5px;font-size:13px';
+  document.getElementById('srcBuiltinList').innerHTML =
+    '<div style="font-size:11px;text-transform:uppercase;letter-spacing:0.08em;color:var(--text3);margin-bottom:6px">Built-in</div>' +
+    DEFAULT_SRCS.map(s=>`<div style="${rowStyle}"><span style="flex:1;color:var(--text2)">${escHtml(s.label)}</span><span style="font-size:11px;color:var(--text3)">default</span></div>`).join('');
+  const custom = customSrcs;
+  document.getElementById('srcCustomList').innerHTML = !custom.length ? '' :
+    '<div style="font-size:11px;text-transform:uppercase;letter-spacing:0.08em;color:var(--text3);margin:10px 0 6px">Custom</div>' +
+    custom.map(s=>`<div style="${rowStyle}">
+      <span style="flex:1;color:var(--text)">${escHtml(s.label)}</span>
+      <button onclick="removeSrc('${s.id}')" style="background:none;border:none;cursor:pointer;color:var(--text3);font-size:13px;padding:2px 8px;border-radius:6px" onmouseover="this.style.color='#C0392B'" onmouseout="this.style.color='var(--text3)'">Remove</button>
+    </div>`).join('');
+}
+
+function addSrc() {
+  const name = document.getElementById('f-src-name').value.trim();
+  if (!name) return;
+  const id = 's_' + name.toLowerCase().replace(/[^a-z0-9]/g,'_').slice(0,20) + '_' + Date.now().toString(36);
+  if (getSrcs().find(s=>s.label.toLowerCase()===name.toLowerCase())) { showToast('Already exists'); return; }
+  customSrcs.push({ id, label: name });
+  document.getElementById('f-src-name').value = '';
+  save();
+  renderSrcModalList();
+  showToast('Source added');
+}
+
+function removeSrc(id) {
+  customSrcs = customSrcs.filter(s=>s.id!==id);
+  save();
+  renderSrcModalList();
+  showToast('Removed');
+}
+
+function populateCompanySelects() {
+  const opts = '<option value="">— none —</option>' + companies.map(co=>`<option value="${co.id}">${escHtml(co.name)}</option>`).join('');
+  ['f-company','f-import-company','u-company'].forEach(id => {
+    const el = document.getElementById(id);
+    if (!el) return;
+    const cur = el.value;
+    el.innerHTML = opts;
+    if (cur) el.value = cur;
+  });
+}
+
+function openCompanyModal() {
+  renderCompanyList();
+  document.getElementById('f-company-name').value = '';
+  document.getElementById('f-company-start').value = '';
+  document.getElementById('f-company-end').value = '';
+  document.getElementById('companyModal').classList.add('open');
+  setTimeout(()=>document.getElementById('f-company-name').focus(), 100);
+}
+
+function renderCompanyList() {
+  const el = document.getElementById('companyList');
+  if (!companies.length) { el.innerHTML = '<p style="font-size:13px;color:var(--text3);text-align:center;padding:12px 0">No companies yet</p>'; return; }
+  el.innerHTML = companies.map((co,i) => {
+    const tenure = co.start + (co.end ? ' – ' + co.end : ' – present');
+    const count = entries.filter(e=>e.company===co.id).length;
+    return `<div style="display:flex;align-items:center;gap:10px;padding:8px 12px;background:var(--surface2);border-radius:10px;margin-bottom:6px">
+      <div style="flex:1;min-width:0">
+        <div style="font-size:13px;font-weight:500;color:var(--text)">${escHtml(co.name)}</div>
+        <div style="font-size:11px;color:var(--text3);font-family:'DM Mono',monospace">${tenure} · ${count} entr${count===1?'y':'ies'}</div>
+      </div>
+      <button onclick="removeCompany('${co.id}')" style="background:none;border:none;cursor:pointer;color:var(--text3);font-size:13px;padding:4px 8px;border-radius:6px" onmouseover="this.style.color='#C0392B'" onmouseout="this.style.color='var(--text3)'">Remove</button>
+    </div>`;
+  }).join('');
+}
+
+function addCompany() {
+  const name = document.getElementById('f-company-name').value.trim();
+  if (!name) { showToast('Enter a company name'); return; }
+  if (companies.find(c=>c.name.toLowerCase()===name.toLowerCase())) { showToast('Already added'); return; }
+  companies.push({ id: uid(), name, start: document.getElementById('f-company-start').value.trim() || '?', end: document.getElementById('f-company-end').value.trim(), created: Date.now() });
+  document.getElementById('f-company-name').value = '';
+  document.getElementById('f-company-start').value = '';
+  document.getElementById('f-company-end').value = '';
+  save();
+  renderCompanyList();
+  showToast('Company added');
+}
+
+function removeCompany(id) {
+  if (!confirm('Remove this company? Entries tagged to it will keep their data but lose the company link.')) return;
+  companies = companies.filter(c=>c.id!==id);
+  save();
+  renderCompanyList();
+  showToast('Removed');
+}
+
+function openAddModal() {
+  editingId = null;
+  document.getElementById('modalTitle').textContent = 'New entry';
+  document.getElementById('f-content').value = '';
+  document.getElementById('f-notes').value = '';
+  document.getElementById('f-year').value = '2024';
+  document.getElementById('f-category').value = 'other';
+  document.getElementById('f-company').value = '';
+  document.getElementById('f-hasMetric').checked = false;
+  document.getElementById('f-starred').checked = false;
+  document.querySelectorAll('.source-pill').forEach(p=>{p.classList.remove('selected'); if(p.dataset.src==='memory') p.classList.add('selected');});
+  selectedSource = 'memory';
+  document.getElementById('addModal').classList.add('open');
+  setTimeout(()=>document.getElementById('f-content').focus(), 100);
+}
+
+function openImportModal() {
+  document.getElementById('f-import-text').value = '';
+  document.getElementById('importModal').classList.add('open');
+  setTimeout(()=>document.getElementById('f-import-text').focus(), 100);
+}
+
+function closeModal(id) { document.getElementById(id).classList.remove('open'); }
+
+function saveEntry() {
+  const content = document.getElementById('f-content').value.trim();
+  if (!content) { showToast('Please add some content'); return; }
+  const company = document.getElementById('f-company').value || '';
+  if (editingId) {
+    const idx = entries.findIndex(e=>e.id===editingId);
+    if (idx > -1) {
+      entries[idx] = { ...entries[idx], content, year: document.getElementById('f-year').value, category: document.getElementById('f-category').value, company, source: selectedSource, notes: document.getElementById('f-notes').value.trim(), hasMetric: document.getElementById('f-hasMetric').checked, starred: document.getElementById('f-starred').checked, updated: Date.now() };
+    }
+    showToast('Entry updated');
+  } else {
+    entries.unshift({ id: uid(), content, year: document.getElementById('f-year').value, category: document.getElementById('f-category').value, company, source: selectedSource, notes: document.getElementById('f-notes').value.trim(), hasMetric: document.getElementById('f-hasMetric').checked, starred: document.getElementById('f-starred').checked, created: Date.now() });
+    showToast('Entry saved');
+  }
+  save();
+  renderEntries();
+  closeModal('addModal');
+}
+
+function saveImport() {
+  const content = document.getElementById('f-import-text').value.trim();
+  if (!content) { showToast('Nothing to save'); return; }
+  entries.unshift({ id: uid(), content, year: document.getElementById('f-import-year').value, category: document.getElementById('f-import-category').value, company: document.getElementById('f-import-company').value || '', source: document.getElementById('f-import-source').value, notes: '', hasMetric: false, starred: false, created: Date.now() });
+  save();
+  renderEntries();
+  closeModal('importModal');
+  showToast('Pasted and saved');
+}
+
+function editEntry(id) {
+  const entry = entries.find(e=>e.id===id);
+  if (!entry) return;
+  editingId = id;
+  document.getElementById('modalTitle').textContent = 'Edit entry';
+  document.getElementById('f-content').value = entry.content || '';
+  document.getElementById('f-notes').value = entry.notes || '';
+  document.getElementById('f-year').value = entry.year || '2024';
+  document.getElementById('f-category').value = entry.category || 'other';
+  document.getElementById('f-company').value = entry.company || '';
+  document.getElementById('f-hasMetric').checked = !!entry.hasMetric;
+  document.getElementById('f-starred').checked = !!entry.starred;
+  document.querySelectorAll('.source-pill').forEach(p=>{p.classList.remove('selected'); if(p.dataset.src===entry.source) p.classList.add('selected');});
+  selectedSource = entry.source || 'memory';
+  document.getElementById('addModal').classList.add('open');
+}
+
+function deleteEntry(id) {
+  if (!confirm('Remove this entry?')) return;
+  entries = entries.filter(e=>e.id!==id);
+  save();
+  renderEntries();
+  showToast('Entry removed');
+}
+
+function toggleStar(id) {
+  const e = entries.find(e=>e.id===id);
+  if (e) { e.starred = !e.starred; save(); renderEntries(); }
+}
+
+function openGenerateModal() {
+  const coId = currentView.startsWith('co-') ? currentView.replace('co-','') : null;
+  const co = coId ? companies.find(c=>c.id===coId) : null;
+  const title = co ? `Generate resume prompt — ${co.name}` : 'Generate resume prompt';
+  const desc = co
+    ? `Copy the prompt below and paste it into Claude, ChatGPT, Gemini, or any AI of your choice. It includes all your entries and reference docs for ${co.name}.`
+    : 'Copy the prompt below and paste it into Claude, ChatGPT, Gemini, or any AI of your choice. It includes all your entries and reference docs.';
+  document.getElementById('generateModalTitle').textContent = title;
+  document.getElementById('generateModalDesc').textContent = desc;
+  document.getElementById('g-all').checked = true;
+  document.getElementById('g-starred-only').checked = false;
+  document.getElementById('g-metrics').checked = true;
+  document.getElementById('g-docs').checked = true;
+  refreshGeneratePrompt();
+  document.getElementById('generateModal').classList.add('open');
+}
+
+function buildGeneratePrompt() {
+  const coId = currentView.startsWith('co-') ? currentView.replace('co-','') : null;
+  const co = coId ? companies.find(c=>c.id===coId) : null;
+  const starredOnly = document.getElementById('g-starred-only').checked;
+  const includeMetricFlag = document.getElementById('g-metrics').checked;
+  const includeDocs = document.getElementById('g-docs').checked;
+
+  let filteredEntries = coId
+    ? entries.filter(e => e.company === coId)
+    : [...entries];
+  if (starredOnly) filteredEntries = filteredEntries.filter(e => e.starred);
+  filteredEntries.sort((a,b) => (a.year||'').localeCompare(b.year||'') || a.created - b.created);
+
+  const filteredDocs = includeDocs
+    ? (coId ? docs.filter(d => d.companyId === coId || !d.companyId) : docs)
+    : [];
+
+  let prompt = '';
+
+  // Intro
+  prompt += `You are helping me write resume bullet points based on my raw career notes`;
+  if (co) prompt += ` from my time at ${co.name}${co.start ? ` (${co.start}${co.end ? '–'+co.end : '–present'})` : ''}`;
+  prompt += `.\n\n`;
+
+  prompt += `Please turn each note into a strong, concise resume bullet point using the XYZ format:\n`;
+  prompt += `"Accomplished [X] by doing [Y], resulting in [Z]"\n\n`;
+  prompt += `Guidelines:\n`;
+  prompt += `- Lead with a strong action verb\n`;
+  prompt += `- Quantify results wherever possible (%, $, team size, time saved, etc.)\n`;
+  prompt += `- Keep each bullet to 1–2 lines\n`;
+  prompt += `- Group related notes into a single bullet if they tell the same story\n`;
+  if (includeMetricFlag) {
+    prompt += `- FLAG any entries where a metric is missing — suggest what I could look up to add one\n`;
+  }
+  prompt += `- Ignore filler or duplicate notes\n\n`;
+
+  // Reference docs
+  if (filteredDocs.length) {
+    prompt += `${'='.repeat(60)}\n`;
+    prompt += `REFERENCE DOCUMENTS (use these for context and language)\n`;
+    prompt += `${'='.repeat(60)}\n\n`;
+    filteredDocs.forEach(d => {
+      prompt += `--- ${d.name.toUpperCase()} [${DOC_TYPES[d.type]||d.type}] ---\n`;
+      prompt += d.content.trim() + '\n\n';
+    });
+  }
+
+  // Entries
+  if (filteredEntries.length) {
+    prompt += `${'='.repeat(60)}\n`;
+    prompt += `RAW CAREER NOTES (turn these into resume bullets)\n`;
+    prompt += `${'='.repeat(60)}\n\n`;
+
+    let lastYear = null;
+    filteredEntries.forEach((e, i) => {
+      if (e.year !== lastYear) {
+        prompt += `\n--- ${e.year} ---\n\n`;
+        lastYear = e.year;
+      }
+      const catLabel = getCatLabel(e.category);
+      const starred = e.starred ? ' ★' : '';
+      const metric = e.hasMetric ? ' [has metric]' : '';
+      prompt += `[${i+1}] [${catLabel}${starred}${metric}]\n`;
+      prompt += e.content.trim() + '\n';
+      if (e.notes) prompt += `  Context: ${e.notes.trim()}\n`;
+      prompt += '\n';
+    });
+  } else {
+    prompt += `(No entries found for the current filter.)\n`;
+  }
+
+  prompt += `${'='.repeat(60)}\n`;
+  prompt += `Please produce the resume bullets now. After the bullets, list any entries flagged for missing metrics with a suggested number or source I could look up.\n`;
+
+  return { prompt, entryCount: filteredEntries.length, docCount: filteredDocs.length };
+}
+
+function refreshGeneratePrompt() {
+  // g-all and g-starred-only are mutually exclusive
+  const allCb = document.getElementById('g-all');
+  const starCb = document.getElementById('g-starred-only');
+  if (document.activeElement === allCb && allCb.checked) starCb.checked = false;
+  if (document.activeElement === starCb && starCb.checked) allCb.checked = false;
+
+  const { prompt, entryCount, docCount } = buildGeneratePrompt();
+  document.getElementById('generateOutput').value = prompt;
+  document.getElementById('generateCount').textContent =
+    `${entryCount} entr${entryCount===1?'y':'ies'} · ${docCount} doc${docCount===1?'':'s'} · ${prompt.length.toLocaleString()} chars`;
+}
+
+function copyPrompt() {
+  const text = document.getElementById('generateOutput').value;
+  navigator.clipboard.writeText(text).then(() => {
+    showToast('Prompt copied — paste into any AI tool');
+  }).catch(() => {
+    document.getElementById('generateOutput').select();
+    document.execCommand('copy');
+    showToast('Prompt copied');
+  });
+}
+
+function downloadPrompt() {
+  const text = document.getElementById('generateOutput').value;
+  const coId = currentView.startsWith('co-') ? currentView.replace('co-','') : null;
+  const co = coId ? companies.find(c=>c.id===coId) : null;
+  const name = co ? co.name.replace(/\s+/g,'-').toLowerCase() : 'all';
+  const blob = new Blob([text], {type:'text/plain'});
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = `resume-prompt-${name}-${new Date().toISOString().slice(0,10)}.txt`;
+  a.click();
+  showToast('Downloaded');
+}
+
+function exportJSON() {
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'career-brain-dump-' + new Date().toISOString().slice(0,10) + '.json';
+  a.click();
+  showToast('Exported');
+}
+
+let uploadedFiles = [];
+
+function openUploadModal() {
+  uploadedFiles = [];
+  document.getElementById('uploadFileList').style.display = 'none';
+  document.getElementById('uploadFileList').innerHTML = '';
+  document.getElementById('uploadOptions').style.display = 'none';
+  document.getElementById('uploadProgress').style.display = 'none';
+  document.getElementById('uploadSaveBtn').style.display = 'none';
+  document.getElementById('dropZone').style.display = '';
+  document.getElementById('uploadModal').classList.add('open');
+}
+
+function onDragOver(e) {
+  e.preventDefault();
+  document.getElementById('dropZone').style.borderColor = 'var(--accent)';
+  document.getElementById('dropZone').style.background = 'var(--accent-bg)';
+}
+function onDragLeave(e) {
+  document.getElementById('dropZone').style.borderColor = 'var(--border2)';
+  document.getElementById('dropZone').style.background = '';
+}
+function onDrop(e) {
+  e.preventDefault();
+  onDragLeave(e);
+  const files = Array.from(e.dataTransfer.files);
+  queueFiles(files);
+}
+function handleFileUpload(e) {
+  queueFiles(Array.from(e.target.files));
+  e.target.value = '';
+}
+
+function queueFiles(files) {
+  files.forEach(f => { if (!uploadedFiles.find(x=>x.name===f.name && x.size===f.size)) uploadedFiles.push(f); });
+  renderUploadList();
+}
+
+function renderUploadList() {
+  if (!uploadedFiles.length) return;
+  const list = document.getElementById('uploadFileList');
+  list.style.display = 'block';
+  list.innerHTML = uploadedFiles.map((f,i) => {
+    const ext = f.name.split('.').pop().toLowerCase();
+    const icon = {txt:'📄',pdf:'📕',docx:'📘',doc:'📘',png:'🖼',jpg:'🖼',jpeg:'🖼',gif:'🖼',webp:'🖼',json:'💾'}[ext] || '📄';
+    const size = f.size > 1024*1024 ? (f.size/1024/1024).toFixed(1)+'MB' : Math.round(f.size/1024)+'KB';
+    return `<div style="display:flex;align-items:center;gap:10px;padding:8px 12px;background:var(--surface2);border-radius:10px;margin-bottom:6px;font-size:13px">
+      <span style="font-size:16px">${icon}</span>
+      <span style="flex:1;color:var(--text);overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${escHtml(f.name)}</span>
+      <span style="color:var(--text3);font-family:'DM Mono',monospace;font-size:11px">${size}</span>
+      <button onclick="removeUploadFile(${i})" style="background:none;border:none;cursor:pointer;color:var(--text3);font-size:14px;padding:2px 6px">✕</button>
+    </div>`;
+  }).join('');
+  document.getElementById('uploadOptions').style.display = '';
+  document.getElementById('uploadSaveBtn').style.display = '';
+}
+
+function removeUploadFile(idx) {
+  uploadedFiles.splice(idx,1);
+  if (!uploadedFiles.length) {
+    document.getElementById('uploadFileList').style.display='none';
+    document.getElementById('uploadOptions').style.display='none';
+    document.getElementById('uploadSaveBtn').style.display='none';
+  } else { renderUploadList(); }
+}
+
+async function processUploads() {
+  if (!uploadedFiles.length) return;
+  const saveAs = document.getElementById('u-save-as').value;
+  const year = document.getElementById('u-year').value;
+  const category = document.getElementById('u-category').value;
+  const source = document.getElementById('u-source').value;
+  const company = document.getElementById('u-company')?.value || '';
+
+  document.getElementById('uploadProgress').style.display = '';
+  document.getElementById('uploadSaveBtn').disabled = true;
+  let saved = 0;
+
+  for (let i = 0; i < uploadedFiles.length; i++) {
+    const file = uploadedFiles[i];
+    const pct = Math.round((i / uploadedFiles.length) * 100);
+    document.getElementById('uploadProgressBar').style.width = pct + '%';
+    document.getElementById('uploadProgressLabel').textContent = `Processing ${file.name}…`;
+
+    try {
+      const ext = file.name.split('.').pop().toLowerCase();
+      let text = '';
+
+      if (ext === 'json') {
+        text = await readAsText(file);
+        try {
+          const data = JSON.parse(text);
+          const imported = data.entries || (Array.isArray(data) ? data : null);
+          if (imported) {
+            imported.forEach(item => { if (!entries.find(e=>e.id===item.id)) entries.push(item); });
+            if (Array.isArray(data.docs)) data.docs.forEach(item => { if (!docs.find(d=>d.id===item.id)) docs.push(item); });
+            if (Array.isArray(data.companies)) data.companies.forEach(item => { if (!companies.find(c=>c.id===item.id)) companies.push(item); });
+            if (Array.isArray(data.customCats)) data.customCats.forEach(item => { if (!customCats.find(c=>c.id===item.id)) customCats.push(item); });
+            if (Array.isArray(data.customSrcs)) data.customSrcs.forEach(item => { if (!customSrcs.find(s=>s.id===item.id)) customSrcs.push(item); });
+            saved++;
+            continue;
+          }
+        } catch(e) {}
+      } else if (ext === 'txt') {
+        text = await readAsText(file);
+      } else if (ext === 'docx' || ext === 'doc') {
+        text = await extractDocx(file);
+      } else if (ext === 'pdf') {
+        text = await extractPdf(file);
+      } else if (['png','jpg','jpeg','gif','webp'].includes(ext)) {
+        text = await extractImageText(file);
+      }
+
+      if (!text || !text.trim()) { showToast('Could not read: ' + file.name); continue; }
+      const name = file.name.replace(/\.[^.]+$/,'');
+
+      if (saveAs === 'doc') {
+        const docType = category === 'feedback' ? 'review' : (category === 'win' ? 'brag' : 'other');
+        docs.unshift({ id: uid(), name, type: docType, content: text.trim(), notes: 'Imported from ' + file.name, created: Date.now() });
+      } else {
+        entries.unshift({ id: uid(), content: text.trim(), year, category, company, source, notes: 'Imported from ' + file.name, hasMetric: false, starred: false, created: Date.now() });
+      }
+      saved++;
+    } catch(err) { console.error(err); showToast('Error reading: ' + file.name); }
+  }
+
+  document.getElementById('uploadProgressBar').style.width = '100%';
+  document.getElementById('uploadProgressLabel').textContent = `Done — ${saved} file${saved!==1?'s':''} saved`;
+  save();
+  setTimeout(() => {
+    closeModal('uploadModal');
+    if (saveAs === 'doc') showView('docs'); else renderEntries();
+    showToast(saved + ' file' + (saved!==1?'s':'') + ' imported');
+    document.getElementById('uploadSaveBtn').disabled = false;
+  }, 800);
+}
+
+function readAsText(file) {
+  return new Promise((res,rej) => {
+    const r = new FileReader();
+    r.onload = e => res(e.target.result);
+    r.onerror = rej;
+    r.readAsText(file);
+  });
+}
+
+function readAsArrayBuffer(file) {
+  return new Promise((res,rej) => {
+    const r = new FileReader();
+    r.onload = e => res(e.target.result);
+    r.onerror = rej;
+    r.readAsArrayBuffer(file);
+  });
+}
+
+function readAsBase64(file) {
+  return new Promise((res,rej) => {
+    const r = new FileReader();
+    r.onload = e => res(e.target.result.split(',')[1]);
+    r.onerror = rej;
+    r.readAsDataURL(file);
+  });
+}
+
+async function extractDocx(file) {
+  if (typeof mammoth === 'undefined') await loadScript('https://cdn.jsdelivr.net/npm/mammoth@1.6.0/mammoth.browser.min.js');
+  const ab = await readAsArrayBuffer(file);
+  const result = await mammoth.extractRawText({ arrayBuffer: ab });
+  return result.value;
+}
+
+async function extractPdf(file) {
+  if (typeof pdfjsLib === 'undefined') {
+    await loadScript('https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js');
+    pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+  }
+  const ab = await readAsArrayBuffer(file);
+  const pdf = await pdfjsLib.getDocument({ data: ab }).promise;
+  let text = '';
+  for (let i = 1; i <= pdf.numPages; i++) {
+    const page = await pdf.getPage(i);
+    const content = await page.getTextContent();
+    text += content.items.map(s => s.str).join(' ') + '\n';
+  }
+  return text;
+}
+
+async function extractImageText(file) {
+  const base64 = await readAsBase64(file);
+  const mime = file.type || 'image/jpeg';
+  const resp = await fetch('https://api.anthropic.com/v1/messages', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      model: 'claude-sonnet-4-20250514',
+      max_tokens: 2000,
+      messages: [{
+        role: 'user',
+        content: [
+          { type: 'image', source: { type: 'base64', media_type: mime, data: base64 } },
+          { type: 'text', text: 'Please transcribe all the text visible in this image exactly as it appears. Output only the transcribed text, nothing else.' }
+        ]
+      }]
+    })
+  });
+  const data = await resp.json();
+  return data.content?.[0]?.text || '';
+}
+
+function loadScript(src) {
+  return new Promise((res,rej) => {
+    if (document.querySelector(`script[src="${src}"]`)) { res(); return; }
+    const s = document.createElement('script');
+    s.src = src; s.onload = res; s.onerror = rej;
+    document.head.appendChild(s);
+  });
+}
+
+function loadJSON(e) {
+  const file = e.target.files[0];
+  if (!file) return;
+  queueFiles([file]);
+  openUploadModal();
+  e.target.value = '';
+}
+
+function toggleTheme() {
+  isDark = !isDark;
+  document.documentElement.setAttribute('data-theme', isDark ? 'dark' : '');
+  localStorage.setItem('careerDump_theme', isDark ? 'dark' : 'light');
+}
+
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'), 2200);
+}
+
+document.querySelectorAll('.modal-overlay').forEach(m => {
+  m.addEventListener('click', e => { if (e.target === m) m.classList.remove('open'); });
+});
+
+load();
+updateCounts();
+updateStats();
+populateYearFilter();
+populateCompanySelects();
+populateCatSelects();
+populateSrcSelects();
+renderSidebarDocs();
+renderSidebarCompanies();
+renderSidebarCats();
+renderSidebarSrcs();
+renderEntries();
+</script>
+</body>
+</html>
